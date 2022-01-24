@@ -1,6 +1,12 @@
-CREATE TABLE IF NOT EXISTS singer(
+CREATE TABLE IF NOT EXISTS genre(
 id serial PRIMARY KEY,
 name varchar(30)
+);
+
+CREATE TABLE IF NOT EXISTS singer(
+id serial PRIMARY KEY,
+name varchar(30),
+genreID integer REFERENCES genre(ID)
 );
 
 CREATE TABLE IF NOT EXISTS album (
@@ -17,8 +23,3 @@ duration_minutes numeric(3,2) CHECK(duration_minutes > 0),
 albumID integer REFERENCES album(id)
 );
 
-CREATE TABLE IF NOT EXISTS genre(
-id serial PRIMARY KEY,
-name varchar(30),
-singerID integer REFERENCES singer(id)
-);
